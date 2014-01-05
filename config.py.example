@@ -1,0 +1,20 @@
+# Copyright (c) 2010 Hans Christian v. Stockhausen
+# See LICENSE for details.
+
+# Rename this file to config.py
+
+# Mailreactor configuration settings ------------------------------------------
+SMTP_PORT = 25
+UID = 1000 # after binding shed root privileges by becoming this user
+GID = 1000 # and this group.
+HOSTNAME = 'mailreactor.co.za' # mailserver's FQDN
+GREYLIST_EXPIRY = 86400 #sec after which a greylist record expires
+GREYLIST_CLEANUP_INTERVAL = 3600 #remove expired entries every x seconds
+DBHOST = '127.0.0.1'
+DBNAME = 'mailreactor'
+DBUSER = ''
+DBPASS = ''
+DBDRIVER= 'psycopg2'
+DBCONNECTION_STRING = 'host=%s dbname=%s user=%s password=%s' % (DBHOST,
+    DBNAME, DBUSER, DBPASS)
+SECRET = '123abc' # used by srs.py to generate hashs

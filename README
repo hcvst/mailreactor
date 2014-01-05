@@ -1,0 +1,57 @@
+WHY MAILREACTOR
+===============
+
+Mailreactor is a simple email forwarding service I built to allow my clients to
+start using email with their newly registered domains quickly. Well, at least I
+thought it would be simple, until I realized I would have to cater for SPF and 
+SRS.
+
+ - http://www.openspf.org
+ - http://www.openspf.org/SRS
+
+Thank you Spammers for the extra effort caused - at least SPF is interesting 
+unlike your garbage. Shame on you.
+
+The mailreactor site offers a pay as you go email service. I felt that new 
+domain owners would probably want to use email asap. At least the first time I
+registered a domain, I was eager to impress my friends with my own email 
+address quickly. However, I didn't feel I could afford to offer free email 
+services, so instead I built this backend, the mailreactor site to configure 
+forwarding rules and gave every new domain owner some free credits to have fun 
+with. 
+
+ - http://www.mailreactor.co.za
+ - http://www.domain-name-registration.co.za
+
+
+DEPENDENCIES
+============
+- pysrs
+- twisted
+- DNS - easy_install will atomatically fetch with pysrs
+- psycopg2
+
+DATABASE TABLES
+===============
+I used web2py to create these tables, as web2py powers my mailreactor frontend.
+
+CREATE TABLE greylist(
+    id SERIAL PRIMARY KEY,
+    hostname VARCHAR(512),
+    ip VARCHAR(512),
+    sender_address VARCHAR(512),
+    timestamp DATE
+);
+CREATE TABLE email_alias(
+    id SERIAL PRIMARY KEY,
+    source_address VARCHAR(512),
+    target_address VARCHAR(512)
+);
+
+HOW TO RUN
+==========
+sudo twistd -noy run.py
+
+CONTACT THE AUTHOR
+==================
+hc at vst.io
